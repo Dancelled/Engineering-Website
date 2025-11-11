@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('includes/head') %>
+<body>
+  <%- include('includes/header') %>
+
+  <main>
+    <h2>Shop Our Collection</h2>
+
+    <form action="/products" method="GET" class="search-form">
+    <input type="text" name="search" placeholder="Search products..." value="<%= search || '' %>">
+    <button type="submit">Search</button>
+    </form>
+
+    <form action="/products" method="GET" class="sort-form">
+      <input type="hidden" name="search" value="<%= search || '' %>">
+      <select name="sort">
+        <option value="">Sort by</option>
+        <option value="low" <%= sort === "low" ? "selected" : "" %>>Price: Low to High</option>
+        <option value="high" <%= sort === "high" ? "selected" : "" %>>Price: High to Low</option>
+      </select>
+      <button type="submit">Apply</button>
+    </form>
+
+    <nav class="category-nav">
+    <a href="/products">All</a>
+    <a href="/products?category=Tops">Tops</a>
+    <a href="/products?category=Bottoms">Bottoms</a>
+    <a href="/products?category=Outerwear">Outerwear</a>
+    </nav>
+
+    <div class="product-grid">
+    <% products.forEach(product => { %>
+        <a href="/products/<%= product.id %>" class="product-card">
+        <img src="<%= product.image %>" alt="<%= product.name %>">
+        <h3><%= product.name %></h3>
+        <p>$<%= product.price.toFixed(2) %></p>
+        </a>
+    <% }) %>
+    </div>
+  </main>
+
+  <%- include('includes/footer') %>
+</body>
+</html>

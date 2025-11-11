@@ -1,0 +1,1 @@
+document.writeln("This is javascript text.")

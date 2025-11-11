@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('includes/head') %>
+<body>
+  <%- include('includes/header') %>
+
+  <main class="checkout-summary">
+    <h1>Order Summary</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% products.forEach(p => { %>
+          <tr>
+            <td><%= p.name %></td>
+            <td>$<%= p.price.toFixed(2) %></td>
+            <td><%= p.quantity %></td>
+            <td>$<%= p.subtotal.toFixed(2) %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <p><strong>Subtotal:</strong> $<%= subtotal.toFixed(2) %></p>
+    <p><strong>Tax (8.25%):</strong> $<%= tax.toFixed(2) %></p>
+    <% if (discountCode) { %>
+      <p><strong>Discount (<%= discountCode %>):</strong> -$<%= discountAmount.toFixed(2) %></p>
+    <% } %>
+    <p><strong>Total:</strong> $<%= total.toFixed(2) %></p>
+
+    <a href="/cart" class="button">← Back to Cart</a>
+    <button class="button">Place Order</button>
+  </main>
+
+  <%- include('includes/footer') %>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('includes/head') %>
+<body>
+  <%- include('includes/header') %>
+
+  <main class="product-detail">
+    <h1>Your Cart</h1>
+
+<% if (products.length === 0) { %>
+  <p>Your cart is empty.</p>
+<% } else { %>
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Qty</th>
+      <th>Subtotal</th>
+    </tr>
+    <% products.forEach(p => { %>
+      <tr>
+        <td><%= p.name %></td>
+        <td>$<%= p.price.toFixed(2) %></td>
+        <td><%= p.quantity %></td>
+        <td>$<%= p.subtotal.toFixed(2) %></td>
+      </tr>
+    <% }) %>
+  </table>
+
+  <p><strong>Subtotal:</strong> $<%= subtotal.toFixed(2) %></p>
+    <% } %>
+
+    <form action="/cart/apply-discount" method="POST" class="discount-form">
+        <label for="discount">Discount Code:</label>
+        <input type="text" name="discount" id="discount" placeholder="Enter code">
+        <button type="submit">Apply</button>
+    </form>
+
+    <p><strong>Subtotal:</strong> $<%= subtotal.toFixed(2) %></p>
+    <p><strong>Tax (8.25%):</strong> $<%= tax.toFixed(2) %></p>
+    <p><strong>Total:</strong> $<%= total.toFixed(2) %></p>
+
+    <% if (discountError) { %>
+    <p class="error"><%= discountError %></p>
+    <% } %>
+
+    <% if (discountCode) { %>
+    <p><strong>Discount (<%= discountCode %>):</strong> -$<%= discountAmount.toFixed(2) %></p>
+    <% } %>
+    <p><strong>Total:</strong> $<%= total.toFixed(2) %></p>
+
+    <a href="/checkout" class="button">Proceed to Checkout →</a>
+  </main>
+
+  <%- include('includes/footer') %>
+</body>
+</html>
