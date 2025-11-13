@@ -1,10 +1,15 @@
 <header>
     <h2><a href="/">Lucaria</a></h2>
   <nav class="navbar">
-    <a href="/">Home</a>
-    <a href="/products">Products</a>
-    <a href="/cart">Cart</a>
-    <a href="/checkout">Checkout</a>
-    <a href="/admin/products">Admin</a>
+    <% if (user) { %>
+      <a href="/">Home</a>
+      <a href="/products">Products</a>
+      <a href="/cart">Cart</a>
+      <a href="/checkout">Checkout</a>
+      <a href="/logout">Log Out</a>
+      <a href="/admin/products">Admin</a>
+    <% } else { %>
+      <a href="/login">Log In</a>
+    <% } %>
   </nav>
 </header>
