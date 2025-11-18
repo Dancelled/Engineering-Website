@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('includes/head') %>
-<body>
+<body> 
     <%- include('includes/header') %>
 
-    <main>
-        <h2>Welcome to your dashboard</h2>
-        <p>sdfjdsag adkg sdglkbgrei jbklsjdan ghskjal bgdksalgjhu kjakjdhal kldaslkjgh iuasdjk gblaksjdbgiu asgjklbaskljgbksdjabgukljbasd, kgba dnabkjgb </p>
-    </main>
+<main>
+    <h2>Welcome to your Larica Shop</h2>
 
-    <%- include('includes/footer') %>
+    <p>
+        Welcome <%= user.username %> to Larica Shop — where modern style meets everyday comfort. 
+        Here you can manage your account, explore new arrivals, and stay updated 
+        with the latest trends designed to elevate your wardrobe.
+    </p>
+<h3>Latest Releases </h2>
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+
+        <div class="slide fade">
+            <img src="/images/hoodie_larica.png" alt="Slide 1">
+        </div>
+
+        <div class="slide fade">
+            <img src="/images/jeans_larica.png" alt="Slide 2">
+        </div>
+
+        <div class="slide fade">
+            <img src="/images/tee_larica.png" alt="Slide 3">
+        </div>
+
+        <!-- Controls -->
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <!-- Dots -->
+    <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+</main>
+
+<script src="/js/slideshow.js"></script>
 </body>
 </html>
