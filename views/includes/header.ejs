@@ -1,18 +1,14 @@
 <header>
-    <h2><a href="/">Larica</a></h2>
+    <h1><a href="/">LARICA</a></h1>
   <nav class="navbar">
     <% if (user) { %>
-      <a href="/">Home<img src="/images/home.png" ></a>
-      <a href="/products">Products<img src="/images/Bag.png" ></a>
-      
-                <a href="/cart">Cart <img src="/images/shopping_cart.png" >
-</a>
-            </li>
-      <a href="/checkout">Checkout<img src="/images/money.png" ></a>
-      <a href="/logout">Log Out</a>
-      <a href="/admin/products">Admin</a>
+      <a href="/"><h5>Home</h5></a>
+      <a href="/products"><h5>Products</h5></a>
+      <a href="/cart"><h5>Cart</h5></a>
+      <a href="/logout"><h5>Log Out</h5></a>
+      <a href="/admin/products"><h5>Admin</h5></a>
     <% } else { %>
-      <a href="/login">Log In</a>
+      <a href="/login"><h5>Log In</h5></a>
     <% } %>
   </nav>
 </header>

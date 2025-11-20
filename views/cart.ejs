@@ -10,24 +10,30 @@
 <% if (products.length === 0) { %>
   <p>Your cart is empty.</p>
 <% } else { %>
-  <table>
+  <table class="cart-table">
     <tr>
+      <th></th>
       <th>Product</th>
       <th>Price</th>
       <th>Qty</th>
       <th>Subtotal</th>
+      <th></th>
     </tr>
     <% products.forEach(p => { %>
       <tr>
+        <td><img src="<%= p.image %>" alt="<%= p.name %>"></td>
         <td><%= p.name %></td>
         <td>$<%= p.price.toFixed(2) %></td>
         <td><%= p.quantity %></td>
         <td>$<%= p.subtotal.toFixed(2) %></td>
+        <td>
+          <form action="/cart/remove" method="POST">
+            <button type="submit" class="remove-button" name="productId" value="<%= p.id %>">Remove</button>
+          </form>
+        </td>
       </tr>
     <% }) %>
   </table>
-
-  <p><strong>Subtotal:</strong> $<%= subtotal.toFixed(2) %></p>
     <% } %>
 
     <form action="/cart/apply-discount" method="POST" class="discount-form">
@@ -36,20 +42,27 @@
         <button type="submit">Apply</button>
     </form>
 
-    <p><strong>Subtotal:</strong> $<%= subtotal.toFixed(2) %></p>
-    <p><strong>Tax (8.25%):</strong> $<%= tax.toFixed(2) %></p>
-    <p><strong>Total:</strong> $<%= total.toFixed(2) %></p>
+    <div class="total-pay-message">
+        <% if (discountError) { %>
+            <p class="error"><%= discountError %></p>
+        <% } %>
 
-    <% if (discountError) { %>
-    <p class="error"><%= discountError %></p>
+        <p><strong>Subtotal:</strong> $<%= subtotal.toFixed(2) %></p>
+        <p><strong>Tax (8.25%):</strong> $<%= tax.toFixed(2) %></p>
+        <p><strong>Total:</strong> $<%= total.toFixed(2) %></p>
+
+        <% if (discountCode) { %>
+        <p><strong>Discount (<%= discountCode %>):</strong> -$<%= discountAmount.toFixed(2) %></p>
+        <% } %>
+        <p><strong>Total:</strong> $<%= total.toFixed(2) %></p>
+    </div>
+    
+    <a href="/products" class="button">← Back to Shop</a>
+    <% if (products.length > 0) { %>
+        <a href="/checkout" class="button">Proceed to Checkout →</a>
+    <% } else { %>
+        <button class="button" disabled aria-disabled="true">Proceed to Checkout →</button>
     <% } %>
-
-    <% if (discountCode) { %>
-    <p><strong>Discount (<%= discountCode %>):</strong> -$<%= discountAmount.toFixed(2) %></p>
-    <% } %>
-    <p><strong>Total:</strong> $<%= total.toFixed(2) %></p>
-
-    <a href="/checkout" class="button">Proceed to Checkout →</a>
   </main>
 
   <%- include('includes/footer') %>

@@ -6,9 +6,6 @@
 
     <main>
         <form action="/login" method="POST">
-            <% errors.forEach(error =>{ %>
-                <p class="notice"><%= error %></p>
-            <% }) %>
             <fieldset>
                 <legend>Log In</legend>
                 <label for="username"><small>Username</small></label>
@@ -20,6 +17,9 @@
                 <br />
                 <button>Log In</button>
             </fieldset>
+            <% errors.forEach(error =>{ %>
+                <p class="notice"><%= error %></p>
+            <% }) %>
         </form>
     </main>
 

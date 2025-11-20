@@ -185,6 +185,21 @@ app.post("/cart/add", (req, res) => {
   res.redirect("/cart")
 })
 
+app.post("/cart/remove", (req, res) => {
+  const productId = parseInt(req.body.productId)
+
+  if (!req.session.cart) req.session.cart = []
+
+  req.session.cart = req.session.cart.filter(item => item.productId !== productId)
+
+  if (req.session.cart.length === 0) {
+    delete req.session.discount
+    delete req.session.discountError
+  }
+
+  res.redirect("/cart")
+})
+
 app.get("/cart", (req, res) => {
   const cart = req.session.cart || []
 

@@ -3,15 +3,19 @@
         "Nimbus Sans L", Roboto, "Noto Sans", "Segoe UI", Arial, Helvetica,
         "Helvetica Neue", sans-serif;
     --mono-font: Consolas, Menlo, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    --montserrat-font: "Montserrat", sans-serif;
+    --muli-font: "Muli", sans-serif;
 
     --standard-border-radius: 5px;
-    --border-width: 1px;
+    --border-width: 2px;
 
-    --bg: #fff;
-    --accent-bg: #f5f7ff;
+    --bg: #f5f7ff;
+    --accent-bg: #edeff6;
+    --bg-alt: #2b2b2b;
 
     --text: #212121;
     --text-light: #585858;
+    --text-alt: #dcdcdc;
 
     --border: #898ea4;
     --accent: #0d47a1;
@@ -22,7 +26,7 @@
     --preformatted: #444;
 
     --marked: #fd3;
-    --disabled: #efefef;
+    --disabled: #111;
 }
 
 /* ------------------------------ */
@@ -37,14 +41,12 @@
         --text: #dcdcdc;
         --text-light: #ababab;
 
-        --accent: #ffb300;
-        --accent-hover: #ffe099;
+        --border: #ababab;
+        
         --accent-text: var(--bg);
 
         --code: #f06292;
         --preformatted: #ccc;
-
-        --disabled: #111;
     }
 
     img,
@@ -73,11 +75,11 @@ progress {
 }
 
 html {
-    font-family: var(--sans-font);
     scroll-behavior: smooth;
 }
 
 body {
+    font-family: var(--muli-font);
     color: var(--text);
     background-color: var(--bg);
     grid-template-columns: 1fr min(45rem, 90%) 1fr;
@@ -92,16 +94,16 @@ body > * {
 }
 
 body > header {
-    background-color: var(--accent-bg);
+    background-color: var(--bg-alt);
     border-bottom: var(--border-width) solid var(--border);
     text-align: center;
     grid-column: 1 / -1;
-    padding: 0.5rem 0 2rem;
+    padding: 0.2rem 0;
 }
 
 body > header h1 {
     max-width: 1200px;
-    margin: 1rem auto;
+    margin: 0.5rem auto;
 }
 
 body > header p {
@@ -109,34 +111,61 @@ body > header p {
     margin: 1rem auto;
 }
 
+body > header a {
+    color: var(--text-alt);
+}
+
 main {
-    padding-top: 1.5rem;
+    background-color: var(--bg);
+    padding: 1.5rem 1rem;
 }
 
 body > footer {
+    background-color: var(--bg);
     color: var(--text-light);
     text-align: center;
-    border-top: var(--border-width) solid var(--border);
-    margin-top: 4rem;
     padding: 2rem 1rem 1.5rem;
     font-size: 0.9rem;
+}
+
+body > footer small {
+    padding: 0.5rem 8rem;
+    border-top: var(--border-width) solid var(--border);
+}
+
+main form fieldset, main form fieldset * {
+    display: block;
+    text-align: center;
+}
+
+main form fieldset input,
+main form fieldset button {
+    width: 60%;
+    margin: 0.5rem auto;
+    display: block;
 }
 
 /* ------------------------------ */
 /* Headings */
 /* ------------------------------ */
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--montserrat-font);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
 h1 {
     font-size: 3rem;
 }
 
 h2 {
-    margin-top: 3rem;
+    margin-top: 1rem;
     font-size: 2.6rem;
 }
 
 h3 {
-    margin-top: 3rem;
+    margin-top: 2rem;
     font-size: 2rem;
 }
 
@@ -156,19 +185,11 @@ p {
     margin: 1.5rem 0;
 }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     line-height: 1.1;
 }
 
@@ -194,51 +215,46 @@ h3 {
 /* Links */
 /* ------------------------------ */
 
-a,
-a:visited {
-    color: var(--accent);
+a {
+    color: var(--text);
+    -webkit-transition: 0.2s color;
+    transition: 0.2s color;
+    text-decoration: none;
 }
 
-a:hover {
+a:hover, a:focus {
+    color: var(--accent);
     text-decoration: none;
+    outline: none;
 }
 
 /* ------------------------------ */
 /* Buttons */
 /* ------------------------------ */
 
-button,
-.button,
-a.button,
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
+button, .button, a.button, input[type="submit"], input[type="reset"], input[type="button"] {
     border: var(--border-width) solid var(--accent);
     background-color: var(--accent);
-    color: var(--accent-text);
+    -webkit-transition: 0.2s background-color;
+    transition: 0.2s background-color;
+    color: var(--text-alt);
     padding: 0.5rem 0.9rem;
     text-decoration: none;
+    
 }
 
-button:enabled:hover,
-.button:not([aria-disabled="true"]):hover,
-input[type="submit"]:enabled:hover,
-input[type="reset"]:enabled:hover,
-input[type="button"]:enabled:hover {
+button:enabled:hover, .button:not([aria-disabled="true"]):hover, input[type="submit"]:enabled:hover,
+input[type="reset"]:enabled:hover, input[type="button"]:enabled:hover {
     background-color: var(--accent-hover);
     border-color: var(--accent-hover);
     cursor: pointer;
 }
 
-.button[aria-disabled="true"],
-input:disabled,
-textarea:disabled,
-select:disabled,
-button[disabled] {
+.button[aria-disabled="true"], input:disabled, textarea:disabled, select:disabled, button[disabled] {
     cursor: not-allowed;
     background-color: var(--disabled);
     border-color: var(--disabled);
-    color: var(--text-light);
+    color: var(--text-alt);
 }
 
 /* ------------------------------ */
@@ -246,13 +262,11 @@ button[disabled] {
 /* ------------------------------ */
 
 header nav {
-    padding: 1rem 0 0;
     font-size: 1rem;
-    line-height: 2;
+    line-height: 1;
 }
 
-header nav ul,
-header nav ol {
+header nav ul, header nav ol {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -262,19 +276,38 @@ header nav ol {
 }
 
 header nav a {
-    border: var(--border-width) solid var(--border);
-    border-radius: var(--standard-border-radius);
-    color: var(--text);
-    padding: 0.2rem 1rem;
-    margin: 0 0.5rem 1rem;
+    color: var(--text-alt);
+    margin: 0 1rem;
     display: inline-block;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
-header nav a:hover,
-header nav a.current {
-    background: var(--bg);
-    border-color: var(--accent);
+header nav a:hover, header nav a.current {
     color: var(--accent);
+}
+
+.category-nav {
+    margin: 0.5rem 0.25rem;
+    text-align: center;
+}
+
+.category-nav a {
+    font-family: var(--montserrat-font);
+    font-weight: 600;
+    text-transform: uppercase;
+    -webkit-transition: 0.2s background-color, 0.2s color;
+    transition: 0.2s background-color, 0.2s color;
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--standard-border-radius);
+    margin: 0 0.25rem;
+    padding: 0.25rem;
+}
+
+.category-nav a:hover, .category-nav a.current {
+    background-color: var(--accent);
+    color: var(--text-alt);
+    border-color: var(--accent);
 }
 
 @media only screen and (width <= 720px) {
@@ -295,9 +328,8 @@ table {
     margin: 1.5rem 0;
 }
 
-td,
-th {
-    border: var(--border-width) solid var(--border);
+td, th {
+    /* border: var(--border-width) solid var(--border); */
     padding: 0.5rem;
     text-align: left;
 }
@@ -306,12 +338,99 @@ th {
     background-color: var(--accent-bg);
 }
 
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+
+.cart-table th, .cart-table td {
+    padding: 0.25rem;
+    text-align: left;
+}
+
+.cart-table th {
+    border-bottom: var(--border-width) solid var(--border);
+    font-family: var(--montserrat-font);
+    font-weight: 600;
+}
+
+.cart-table img {
+    width: 6rem;
+    height: auto;
+    border-radius: var(--standard-border-radius);
+}
+
+/* ------------------------------ */
+/* Product Grid */
+/* ------------------------------ */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem; /* spacing between cards */
+    margin-top: 2rem;
+}
+
+.product-card {
+    font-family: var(--muli-font);
+    display: block;
+    text-align: center;
+    color: var(--text);
+    background-color: var(--bg);
+    border: var(--border-width) solid var(--border);
+    border-radius: var(--standard-border-radius);
+    padding: 1rem;
+    text-decoration: none;
+    transition: 0.3s transform;
+}
+
+.product-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 2px 5px var(--text-light);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--standard-border-radius);
+    margin-bottom: 0.5rem;
+}
+
+.product-name {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0.25rem 0 1rem;
+}
+
+.product-price {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0.25rem 0.25rem;
+}
+
+.product-category {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin: 0.25rem 0 2rem;
+}
+
+@media only screen and (width <= 720px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ------------------------------ */
 /* Images */
 /* ------------------------------ */
 
-img,
-video {
+img, video {
+    border: var(--border-width) solid var(--border);
+    border-color: var(--border);
     border-radius: var(--standard-border-radius);
     max-width: 100%;
     height: auto;
@@ -321,17 +440,29 @@ video {
 /* Forms */
 /* ------------------------------ */
 
-textarea,
-select,
-input,
-button,
-.button {
+textarea, select, input, button, .button {
     font-size: inherit;
     border-radius: var(--standard-border-radius);
     max-width: 100%;
     margin-bottom: 0.5rem;
     padding: 0.5em;
     font-family: inherit;
+}
+
+.search-form, .sort-form {
+    display: block;
+    margin: 0.5rem 0;
+    font-size: 1.15rem;
+}
+
+.search-bar, .sort-bar {
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+}
+
+.add-to-cart-form {
+    margin: 1rem 0;
+    font-size: 1.25rem;
 }
 
 /* ------------------------------ */
@@ -352,19 +483,18 @@ mark {
     padding: 2px 5px;
 }
 body {
-    background: #1c1c1c;  /* your dark page background */
+    background: var(--bg);  /* dark page background */
     position: relative;
 }
 
 /* Left column */
-body::before,
-body::after {
+body::before, body::after {
     content: "";
     position: fixed;
     top: 0;
-    width: 300px;        /* adjust width of side columns */
+    width: 250px;        /* adjust width of side columns */
     height: 100%;
-    background: #525151; /* gray color */
+    background: var(--accent-bg); /* gray color */
     z-index: -1;         /* keeps them behind everything */
 }
 
@@ -376,4 +506,14 @@ body::before {
 /* Right column */
 body::after {
     right: 0;
+}
+
+.total-pay-message {
+    margin-bottom: 1rem;
+}
+
+.total-pay-message p{
+    font-size: 1.25rem;
+    margin: 0.25rem;
+    color: var(--text);
 }
